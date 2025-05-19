@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default function Product() {
   const [products, setProducts] = useState([]);
@@ -35,10 +36,14 @@ export default function Product() {
               gap: '1rem'
             }}
           >
-            <img src={item.image} alt={item.title} width="100" />
+            {/* Link al dettaglio */}
+            <Link to={`/prodotti/${item.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+              <img src={item.image} alt={item.title} width="100" />
+            </Link>
             <div>
               <p><strong>{item.title}</strong></p>
               <p>Prezzo: €{item.price}</p>
+              <Link to={`/prodotti/${item.id}`}>Dettagli →</Link>
             </div>
           </li>
         ))}
@@ -46,4 +51,3 @@ export default function Product() {
     </div>
   );
 }
-
